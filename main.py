@@ -1,9 +1,13 @@
-import os
+import sys
+
+from classes.program import Program
 
 
-def main():
-    print()
+def main(filename):
+    program = Program()
+    program.load_file_to_lines(filename)
+    program.execute_program()
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[0])
