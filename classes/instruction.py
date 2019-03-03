@@ -12,59 +12,70 @@ class Instruction:
         self.program = program
 
     def read(self):
-        print('Get key input:')
+        # print('Get key input:')
+        sys.stdout.write('Write a number: ')
         input_key = int(input())
         if self.program.set_variable(self.parameter1, input_key):
-            print('Succesfuly added')
+            sys.stdout.write('Succesfuly added\n')
+            # print('Succesfuly added')
 
     def write(self):
         if self.program.check_if_variable_exists(self.parameter1):
-            print(self.parameter1, '=', self.program.get_variable(self.parameter1))
+            sys.stdout.write(str(self.parameter1) + '=' + str(self.program.get_variable(self.parameter1)))
+            # print(self.parameter1, '=', self.program.get_variable(self.parameter1))
         else:
-            print('Variable ', self.parameter1, 'dont exists')
+            sys.stdout.write('Variable ', str(self.parameter1), 'dont exists\n')
+            # print('Variable ', self.parameter1, 'dont exists')
             quit()
 
     def sum(self):
         param1, param2 = self.check_parameters()
         variable = (param1 + param2)
         if self.program.set_variable(self.parameter3, variable):
-            print(variable)
+            sys.stdout.write('=' + str(variable) + '\n')
+            # print(variable)
 
     def sub(self):
         param1, param2 = self.check_parameters()
         variable = (param1 - param2)
         if self.program.set_variable(self.parameter3, variable):
-            print(variable)
+            sys.stdout.write('= ' + str(variable) + '\n')
+            # print(variable)
 
     def multiply(self):
         param1, param2 = self.check_parameters()
         variable = (param1 * param2)
         if self.program.set_variable(self.parameter3, variable):
-            print(variable)
+            sys.stdout.write('= ' + str(variable) + '\n')
+            # print(variable)
 
     def less(self):
         param1, param2 = self.check_parameters()
         variable = (param1 < param2)
         if self.program.set_variable(self.parameter3, variable):
-            print(variable)
+            sys.stdout.write('=' + variable + '\n')
+            # print(variable)
 
     def greater(self):
         param1, param2 = self.check_parameters()
         variable = (param1 > param2)
         if self.program.set_variable(self.parameter3, variable):
-            print(variable)
+            sys.stdout.write('=' + str(variable) + '\n')
+            # print(variable)
 
     def less_or_equal(self):
         param1, param2 = self.check_parameters()
         variable = (param1 <= param2)
         if self.program.set_variable(self.parameter3, variable):
-            print(variable)
+            sys.stdout.write('=' + str(variable) + '\n')
+            # print(variable)
 
     def greater_or_equal(self):
         param1, param2 = self.check_parameters()
         variable = (param1 >= param2)
         if self.program.set_variable(self.parameter3, variable):
-            print(variable)
+            sys.stdout.write('=' + str(variable) + '\n')
+            # print(variable)
 
     def check_parameters(self):
         param1 = ''
@@ -90,30 +101,36 @@ class Instruction:
             if self.program.check_if_variable_exists(self.parameter1):
                 return self.program.get_variable(self.parameter1)
             else:
-                print('Error: Variable "', self.parameter1, '" dont exists')
+                sys.stdout.write('Error: Variable "' + str(self.parameter1) + '" dont exists\n')
+                # print('Error: Variable "', self.parameter1, '" dont exists')
                 quit()
 
     def equal(self):
         param1, param2 = self.check_parameters()
         variable = (param1 == param2)
         if self.program.set_variable(self.parameter3, variable):
-            print(variable)
+            sys.stdout.write('=' + str(variable) + '\n')
+            # print(variable)
 
     def set(self):
         if isinstance(int(self.parameter2), int):
             if self.program.set_variable(self.parameter1, int(self.parameter2)):
-                print(int(self.parameter2))
+                sys.stdout.write(str(self.parameter2) + '\n')
+                # print(int(self.parameter2))
             else:
-                print('Error')
+                sys.stdout.write('Warning 1\n')
+                # print('Error')
         else:
             if self.program.set_variable(self.parameter1, int(self.program.get_variable(self.parameter2))):
-                print('Error')
+                sys.stdout.write('Warning 2\n')
+                # print('Error')
 
     def jump(self):
         if self.program.check_length_of_program(int(self.parameter1)):
             self.program.set_iterator(int(self.parameter1) - 1)
         else:
-            print("Illegal Jump", self.program.get_iterator())
+            sys.stdout.write("Illegal Jump" + str(self.program.get_iterator()) + '\n')
+            # print("Illegal Jump", self.program.get_iterator())
             sys.exit()
         pass
 
@@ -123,7 +140,8 @@ class Instruction:
             if self.program.check_length_of_program(int(self.parameter2)):
                 self.program.set_iterator(int(self.parameter2) - 1)
             else:
-                print("Illegal Jump", self.program.get_iterator())
+                sys.stdout.write("Illegal Jump" + str(self.program.get_iterator()) + '\n')
+                # print("Illegal Jump", self.program.get_iterator())
                 sys.exit()
 
     def jumpf(self):
@@ -132,7 +150,8 @@ class Instruction:
             if self.program.check_length_of_program(int(self.parameter2)):
                 self.program.set_iterator(int(self.parameter2) - 1)
             else:
-                print("Illegal Jump", self.program.get_iterator())
+                sys.stdout.write("Illegal Jump" + str(self.program.get_iterator()) + '\n')
+                # print("Illegal Jump", self.program.get_iterator())
                 sys.exit()
 
     def execute_instruction(self):
