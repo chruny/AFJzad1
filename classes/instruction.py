@@ -117,13 +117,9 @@ class Instruction:
             if self.program.set_variable(self.parameter1, int(self.parameter2)):
                 sys.stdout.write(str(self.parameter2) + '\n')
                 # print(int(self.parameter2))
-            else:
-                sys.stdout.write('Warning 1\n')
-                # print('Error')
         else:
-            if self.program.set_variable(self.parameter1, int(self.program.get_variable(self.parameter2))):
-                sys.stdout.write('Warning 2\n')
-                # print('Error')
+            if self.program .set_variable(self.parameter1, int(self.program.get_variable(self.parameter2))):
+                print()
 
     def jump(self):
         if self.program.check_length_of_program(int(self.parameter1)):
